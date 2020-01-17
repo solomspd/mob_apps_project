@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.AUC.mob_apps_project.ui.login.LoginActivity;
 
 public class splashscreen extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 4000;
