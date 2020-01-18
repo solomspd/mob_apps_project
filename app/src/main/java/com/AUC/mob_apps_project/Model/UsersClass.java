@@ -1,4 +1,4 @@
-package com.AUC.mob_apps_project;
+package com.AUC.mob_apps_project.Model;
 
 public class UsersClass {
 
