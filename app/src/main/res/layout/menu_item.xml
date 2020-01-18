@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="100dp"
     app:cardElevation="4dp">
 
 
@@ -13,10 +13,10 @@
 
     <ImageView
         android:id="@+id/menu_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
     <TextView
         android:id="@+id/menu_name"
@@ -30,6 +30,18 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/menu_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#00333639"
+        android:gravity="start"
+        android:text="Categpry"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/menu_price"

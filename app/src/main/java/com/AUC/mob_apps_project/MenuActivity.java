@@ -56,10 +56,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void loadMenu() {
-        FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category){
+        FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category.orderByChild("Category")){
             @Override
             protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position){
                 viewHolder.txtMenuName.setText(model.Name);
+                viewHolder.CategoryView.setText("  "+model.Category+":");
                 viewHolder.txtPrice.setText((String.valueOf(model.Price) + "LE    "));
                 Picasso.get().load(model.Image).into(viewHolder.imageView);
 
@@ -73,23 +74,5 @@ public class MenuActivity extends AppCompatActivity {
             }
         };
         recycler_menu.setAdapter(adapter);
-        FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter2 = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category){
-            @Override
-            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position){
-                viewHolder.txtMenuName.setText(model.Name);
-                viewHolder.txtPrice.setText((String.valueOf(model.Price) + "LE    "));
-                Picasso.get().load(model.Image).into(viewHolder.imageView);
-
-                final Category clickitem = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void OnClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getApplicationContext(),clickitem.Name,Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        };
-        recycler_menu.setAdapter(adapter2);
-
     }
 }
