@@ -59,11 +59,10 @@ public class MenuActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category.orderByChild("Category")){
             @Override
             protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position){
-                viewHolder.txtMenuName.setText(model.Name);
+                viewHolder.txtMenuName.setText((model.Name).toUpperCase());
                 viewHolder.CategoryView.setText("  "+model.Category+":");
                 viewHolder.txtPrice.setText((String.valueOf(model.Price) + "LE    "));
                 Picasso.get().load(model.Image).into(viewHolder.imageView);
-
                 final Category clickitem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

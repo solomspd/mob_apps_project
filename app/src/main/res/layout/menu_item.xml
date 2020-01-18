@@ -7,57 +7,58 @@
     app:cardElevation="4dp">
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/menu_image"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:layout_marginBottom="5dp">
 
-    <TextView
-        android:id="@+id/menu_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/overlayBackground"
-        android:gravity="start"
-        android:text="Name of Menu"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/menu_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/common_google_signin_btn_icon_dark_normal" />
 
-    <TextView
-        android:id="@+id/menu_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#00333639"
-        android:gravity="start"
-        android:text="Categpry"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/menu_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/overlayBackground"
+            android:gravity="start"
+            android:text="Name of Menu"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/menu_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#00333639"
-        android:gravity="start"
-        android:text="Name of Menu"
-        android:textAlignment="viewEnd"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/menu_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#00333639"
+            android:gravity="start"
+            android:text="Category"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/menu_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#00333639"
+            android:gravity="start"
+            android:text="Price"
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 
 
