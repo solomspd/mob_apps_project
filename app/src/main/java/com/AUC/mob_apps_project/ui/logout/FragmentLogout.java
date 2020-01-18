@@ -1,4 +1,4 @@
-package com.AUC.mob_apps_project.ui.gallery;
+package com.AUC.mob_apps_project.ui.logout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,23 +19,16 @@ import com.AUC.mob_apps_project.LoginActivity;
 import com.AUC.mob_apps_project.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class GalleryFragment extends Fragment {
+public class FragmentLogout extends Fragment {
 
-//    private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_logout,container,false);
+        FirebaseAuth.getInstance().signOut();
 
-        View view = inflater.inflate(R.layout.fragment_gallery,container,false);
-//
-//        view.findViewById(R.id.logout1).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(getActivity(),LoginActivity.class));
-//
-//            }
-//        });
+        startActivity(new Intent(getActivity(),LoginActivity.class));
+        Toast.makeText(getActivity(),"Logged out Successfully! ", Toast.LENGTH_LONG).show();
 
         return view;
     }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_home"
+    >
 
     <fragment
         android:id="@+id/nav_home"
@@ -40,4 +41,10 @@
         android:name="com.AUC.mob_apps_project.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.AUC.mob_apps_project.ui.logout.FragmentLogout"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>
