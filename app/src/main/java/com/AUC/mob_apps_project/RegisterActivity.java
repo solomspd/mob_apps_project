@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         findViewById(R.id.phone_verified).setVisibility(View.GONE);
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
             finish();
         }
 
@@ -161,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
                                    progressBar.setVisibility(View.GONE);
                                    if (task.isSuccessful()) {
                                        Toast.makeText(RegisterActivity.this,"User Created Successfully.",Toast.LENGTH_LONG).show();
-                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                       startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                                    } else {
                                        Toast.makeText(RegisterActivity.this,"ERROR\n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                                    }

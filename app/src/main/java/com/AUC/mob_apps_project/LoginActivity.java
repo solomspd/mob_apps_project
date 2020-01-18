@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loading_login);
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
             finish();
         }
 
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this,"Login Successfully.",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                         }else {
                             Toast.makeText(LoginActivity.this,"ERROR\n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);
