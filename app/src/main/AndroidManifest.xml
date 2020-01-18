@@ -14,9 +14,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+
         <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

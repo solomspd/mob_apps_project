@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail,mPassword;
-    Button login;
+    Button login,register;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
 
@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
         login = findViewById(R.id.login);
+        register = findViewById(R.id.register);
 
         fAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.loading_login);
@@ -39,6 +40,16 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
         }
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(homeIntent);
+                finish();
+
+            }
+        });
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Login Successfuly.",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,"Login Successfully.",Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else {
                             Toast.makeText(LoginActivity.this,"ERROR\n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();

@@ -87,21 +87,6 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#FFFFFF"
-                android:hint="@string/prompt_username"
-                android:inputType="text"
-                android:selectAllOnFocus="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#E8A1A1"
-                android:textStyle="bold" />
-
-            <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,7 +122,24 @@
                 android:textStyle="bold"
                 android:theme="@style/EditTextTheme" />
 
+            <TextView
+                android:id="@+id/phone_verified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.001"
+                android:text="(+20)"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                tools:visibility="gone" />
+
             <LinearLayout
+                android:id="@+id/num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
@@ -175,7 +177,7 @@
                     android:theme="@style/EditTextTheme" />
 
                 <Button
-                    android:id="@+id/reg_verify"
+                    android:id="@+id/reg_send"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,6 +188,53 @@
                     android:enabled="true"
                     android:foreground="@drawable/rippleeffect"
                     android:minWidth="44dip"
+                    android:minHeight="24dip"
+                    android:text="Send"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/verf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="26dp"
+                android:orientation="horizontal"
+                tools:visibility="gone">
+
+                <EditText
+                    android:id="@+id/code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    android:hint="Confirmation Code"
+                    android:inputType="text"
+                    android:selectAllOnFocus="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#E8A1A1"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/reg_verify"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/custombutton1"
+                    android:enabled="true"
+                    android:foreground="@drawable/rippleeffect"
+                    android:minWidth="88dip"
                     android:minHeight="24dip"
                     android:text="Verify"
                     android:textColor="#FFFFFF"
@@ -201,6 +250,21 @@
                 android:layout_gravity="bottom|center"
                 android:layout_marginTop="26dp"
                 android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/reg_back"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="100"
+                    android:background="@drawable/custombutton1"
+                    android:enabled="true"
+                    android:foreground="@drawable/rippleeffect"
+                    android:text="back"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/reg_submit"
