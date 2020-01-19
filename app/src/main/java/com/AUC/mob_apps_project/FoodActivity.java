@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.AUC.mob_apps_project.Interface.ItemClickListener;
-import com.AUC.mob_apps_project.Model.Category;
 import com.AUC.mob_apps_project.Model.Food;
+import com.AUC.mob_apps_project.ViewHolder.FoodViewHolder;
 import com.AUC.mob_apps_project.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,23 +20,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-
-public class MenuActivity extends AppCompatActivity {
+public class FoodActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
-    DatabaseReference category;
+    DatabaseReference food;
+    String Cat_ID="";
 
+    TextView foodheader;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager LayoutManager;
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
-    String Rest_ID="";
+
+    FirebaseRecyclerAdapter<Food, MenuViewHolder> adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_food);
         FloatingActionButton fab = findViewById(R.id.fab2);
+        TextView foodheader = findViewById(R.id.foodheader);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,46 +49,41 @@ public class MenuActivity extends AppCompatActivity {
 
         //Firebase
         database = FirebaseDatabase.getInstance();
+        food = database.getReference("Restaurant").child("Restaurant").child("Food");
 
         //Load Menu
         recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
         LayoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(LayoutManager);
-        TextView menuheader;
-        menuheader = (TextView) findViewById(R.id.menuheader);
 
-
-        Rest_ID = getIntent().getStringExtra("Restaurant");
-        category = database.getReference("Restaurant").child(Rest_ID).child("Category");
-        menuheader.setText(Rest_ID);
-        loadMenu();
-
+        if(getIntent() != null){
+            Cat_ID = getIntent().getStringExtra("Name");
+            foodheader.setText(getIntent().getStringExtra("Title"));
+        }
+        if(!Cat_ID.isEmpty() && Cat_ID != null) {
+            loadFood(Cat_ID);
+        }
 
 
     }
 
-    private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category.orderByChild("name")){
+    private void loadFood(String Cat_ID) {
+        FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,R.layout.menu_item,FoodViewHolder.class,food.orderByChild("menuId").equalTo(Cat_ID)){
             @Override
-            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position){
-                    viewHolder.txtMenuName.setText((model.name).toUpperCase());
-                    Picasso.get().load(model.image).into(viewHolder.imageView);
-
-                final Category clickitem = model;
+            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position){
+                try {
+                    viewHolder.txtMenuName1.setText((model.name).toUpperCase());
+                    viewHolder.txtPrice1.setText(model.price + " LE");
+                    Picasso.get().load(model.image).into(viewHolder.imageView1);
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_LONG).show();
+                }
+                final Food clickitem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void OnClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(getApplicationContext(),clickitem.name,Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(MenuActivity.this, FoodActivity.class);
-                            i.putExtra("Name", adapter.getRef(position).getKey());
-                            i.putExtra("Title", adapter.getItem(position).name);
-                        try {
-                                startActivity(i);
-                            }catch(Exception e){
-                                Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_LONG).show();
-                            }
-
                     }
                 });
             }

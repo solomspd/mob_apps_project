@@ -26,23 +26,13 @@
             android:layout_alignParentBottom="true"
             android:background="@color/overlayBackground"
             android:gravity="start"
+            android:paddingLeft="20dp"
+            android:paddingRight="0dp"
             android:text="Name of Menu"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/menu_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#00333639"
-            android:gravity="start"
-            android:text="Category"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/menu_price"
@@ -51,12 +41,12 @@
             android:layout_alignParentBottom="true"
             android:background="#00333639"
             android:gravity="start"
-            android:text="Price"
-            android:textAlignment="viewEnd"
+            android:paddingRight="20dp"
+            android:text=" "
+            android:textAlignment="textEnd"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="italic" />
-
 
     </RelativeLayout>
 

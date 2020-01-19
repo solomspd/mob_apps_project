@@ -10,18 +10,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.AUC.mob_apps_project.Interface.ItemClickListener;
 import com.AUC.mob_apps_project.R;
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtMenuName;
-    public ImageView imageView;
+    public TextView txtMenuName1;
+    public ImageView imageView1;
+    public TextView txtPrice1;
 
     private ItemClickListener itemClickListener;
 
-    public MenuViewHolder(@NonNull View itemView) {
+    public FoodViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        txtMenuName = (TextView) itemView.findViewById(R.id.menu_name);
-        imageView = (ImageView) itemView.findViewById(R.id.menu_image);
+        txtMenuName1 = (TextView) itemView.findViewById(R.id.menu_name);
+        imageView1 = (ImageView) itemView.findViewById(R.id.menu_image);
+        txtPrice1 = (TextView) itemView.findViewById(R.id.menu_price);
+
 
         itemView.setOnClickListener(this);
     }

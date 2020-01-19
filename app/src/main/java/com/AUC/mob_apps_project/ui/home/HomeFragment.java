@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.AUC.mob_apps_project.FoodActivity;
 import com.AUC.mob_apps_project.MenuActivity;
 import com.AUC.mob_apps_project.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +26,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(), MenuActivity.class));
+                Intent i = new Intent(getActivity(), MenuActivity.class);
+                i.putExtra("Restaurant", "Restaurant");
+                startActivity(i);
 
             }
         });
