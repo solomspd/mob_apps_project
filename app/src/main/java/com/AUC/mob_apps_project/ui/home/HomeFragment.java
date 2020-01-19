@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.AUC.mob_apps_project.FoodActivity;
 import com.AUC.mob_apps_project.MenuActivity;
 import com.AUC.mob_apps_project.R;
+import com.AUC.mob_apps_project.RestaurantActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
@@ -25,8 +26,7 @@ public class HomeFragment extends Fragment {
         view.findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(getActivity(), MenuActivity.class);
+                Intent i = new Intent(getActivity(), RestaurantActivity.class);
                 i.putExtra("Restaurant", "Restaurant");
                 startActivity(i);
 
