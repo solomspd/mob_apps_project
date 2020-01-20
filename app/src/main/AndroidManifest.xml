@@ -11,16 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".menu_item_edit"></activity>
+        <activity android:name=".layout_editor"></activity>
+        <activity android:name=".payment_history"/>
+        <activity android:name=".menu_item_edit" />
         <activity android:name=".waiting_list" />
         <activity android:name=".menu_item" />
-        <activity android:name=".control_panel" />
+        <activity android:name=".control_panel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RestaurantActivity" />
-        android:theme="@style/AppTheme"
-        tools:replace="android:theme">
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity" />
         <activity android:name=".FoodDetailActivity" />
-        <activity android:name=".RestaurantActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />
         <activity
@@ -30,11 +35,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".splashscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

@@ -7,7 +7,7 @@
     tools:context=".waiting_list">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wait_lsit_list"
+        android:id="@+id/wait_list_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
