@@ -3,6 +3,8 @@ package com.AUC.mob_apps_project;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.AUC.mob_apps_project.Common.CurrentUser;
+import com.AUC.mob_apps_project.Model.UsersClass;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -15,6 +17,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,6 +33,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
+    DatabaseReference reference;
+    FirebaseDatabase database;
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -37,6 +47,26 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        UsersClass temp = new UsersClass();
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                UsersClass post = dataSnapshot.getValue(UsersClass.class);
+                CurrentUser.user = post;
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                // ...
+            }
+        };
+        reference.addValueEventListener(postListener);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
