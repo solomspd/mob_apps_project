@@ -78,7 +78,6 @@ public class MenuActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void OnClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getApplicationContext(),clickitem.name,Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MenuActivity.this, FoodActivity.class);
                             i.putExtra("RestId",Rest_ID);
                             i.putExtra("Name", adapter.getRef(position).getKey());

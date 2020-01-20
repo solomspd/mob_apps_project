@@ -13,15 +13,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_order"
         android:name="com.AUC.mob_apps_project.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_order"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_currentorder"
         android:name="com.AUC.mob_apps_project.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_currentorder"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
@@ -30,16 +30,11 @@
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.AUC.mob_apps_project.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_info"
         android:name="com.AUC.mob_apps_project.ui.send.SendFragment"
-        android:label="@string/menu_send"
+        android:label="@string/menu_info"
         tools:layout="@layout/fragment_send" />
 
     <fragment

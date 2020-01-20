@@ -30,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
@@ -51,12 +52,18 @@ public class HomeActivity extends AppCompatActivity {
         reference = database.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         UsersClass temp = new UsersClass();
 
+
+        // TO SAVE USER'S INFORMATION IN COMMON.USER
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
                 UsersClass post = dataSnapshot.getValue(UsersClass.class);
                 CurrentUser.user = post;
+                TextView username = findViewById(R.id.Username);
+                username.setText("   "+CurrentUser.user.fullname+"   ");
+                TextView email = findViewById(R.id.textView);
+                email.setText(" "+CurrentUser.user.email+" ");
 
             }
 
@@ -73,15 +80,13 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send,R.id.nav_logout)
+                R.id.nav_home, R.id.nav_order, R.id.nav_currentorder,
+                R.id.nav_tools, R.id.nav_info,R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-//        navigationView.setNavigationItemSelectedListener();
 
 
     }

@@ -7,6 +7,20 @@
     android:background="@drawable/custombackground1"
     tools:context=".RestaurantActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="66dp"
+        android:layout_weight="0.01"
+        android:contentDescription="s"
+        app:backgroundTint="#1B6D1E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/white_map" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
