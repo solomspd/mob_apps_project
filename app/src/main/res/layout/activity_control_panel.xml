@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".control_panel">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#4F696969"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/menu_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Menu"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/menu_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/ic_currency" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#4F696969"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/payment_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Payments"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/payment_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/ic_menu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#4F696969"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/waiting_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Waiting List"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/waiting_list_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/ic_waiting" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#4F696969"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/layout_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Restaurant Layout"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/layout_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/test" />
+    </LinearLayout>
+
+</LinearLayout>
