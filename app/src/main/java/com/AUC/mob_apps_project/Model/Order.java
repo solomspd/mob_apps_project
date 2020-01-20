@@ -2,7 +2,9 @@ package com.AUC.mob_apps_project.Model;
 
 public class Order {
 
-    public String ProductId, ProductName,Quantity,Price,Discount;
+    private String ProductId;
+    private String Quantity;
+    public String ProductName,Price,Discount;
     public Order(){
 
     }

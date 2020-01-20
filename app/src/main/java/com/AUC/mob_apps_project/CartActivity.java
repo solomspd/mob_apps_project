@@ -57,14 +57,18 @@ public class CartActivity extends AppCompatActivity {
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Order e = new Order();
                 Request request = new Request(CurrentUser.user.phone,CurrentUser.user.fullname,Rest_ID,txtTotalPrice.getText().toString(),cart);
-                // SUBMIT OPTION
-                requests.child(String.valueOf(System.currentTimeMillis())).setValue(request);
-                // Delete Cart
-                new Database(getBaseContext()).cleanCart();
-                Toast.makeText(CartActivity.this,"Thank you, Order has been placed", Toast.LENGTH_SHORT).show();
-                finish();
+                if(!cart.isEmpty()) {
+                    String time = String.valueOf(System.currentTimeMillis());
+                    requests.child(time).setValue(request); // Submit
+//                    requests.child(time).setValue(cart);
+                    new Database(getBaseContext()).cleanCart();                 // Delete Cart
+                    Toast.makeText(CartActivity.this,"Thank you, Order has been placed", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CartActivity.this, "Your cart is empty!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
         btnEmpty.setOnClickListener(new View.OnClickListener() {
