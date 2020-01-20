@@ -251,15 +251,15 @@
 
                 <Button
                     android:id="@+id/reg_back"
+                    android:background="@drawable/custombutton1"
+                    android:enabled="true"
+                    android:foreground="@drawable/rippleeffect"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="100"
-                    android:background="@drawable/custombutton1"
-                    android:enabled="true"
-                    android:foreground="@drawable/rippleeffect"
                     android:text="back"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />

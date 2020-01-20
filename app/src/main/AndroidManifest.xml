@@ -16,6 +16,11 @@
         <activity android:name=".menu_item" />
         <activity android:name=".control_panel" />
         <activity android:name=".RestaurantActivity" />
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".FoodDetailActivity" />
+        <activity android:name=".RestaurantActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />
         <activity
@@ -25,15 +30,6 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".splashscreen">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".table_sel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -38,12 +38,13 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         FloatingActionButton fab = findViewById(R.id.fab2);
+        Rest_ID = getIntent().getStringExtra("Restaurant");
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+               Intent cartIntent = new Intent (MenuActivity.this,CartActivity.class);
+                cartIntent.putExtra("Restaurant",Rest_ID);
+                startActivity(cartIntent);            }
         });
 
         //Firebase
@@ -58,7 +59,6 @@ public class MenuActivity extends AppCompatActivity {
         menuheader = (TextView) findViewById(R.id.menuheader);
 
 
-        Rest_ID = getIntent().getStringExtra("Restaurant");
         category = database.getReference("Restaurant").child(Rest_ID).child("Category");
         menuheader.setText(Rest_ID);
         loadMenu();
@@ -78,8 +78,8 @@ public class MenuActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void OnClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getApplicationContext(),clickitem.name,Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MenuActivity.this, FoodActivity.class);
+                            i.putExtra("RestId",Rest_ID);
                             i.putExtra("Name", adapter.getRef(position).getKey());
                             i.putExtra("Title", adapter.getItem(position).name);
                         try {

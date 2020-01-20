@@ -19,7 +19,7 @@ public class SlideshowFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_share,container,false);
+        View view = inflater.inflate(R.layout.fragment_slideshow,container,false);
 //
 //        view.findViewById(R.id.logout1).setOnClickListener(new View.OnClickListener() {
 //            @Override
