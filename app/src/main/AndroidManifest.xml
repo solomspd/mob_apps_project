@@ -19,7 +19,6 @@
 
         <activity android:name=".CartActivity"></activity>
         <activity android:name=".FoodDetailActivity" />
-        <activity android:name=".RestaurantActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />
         <activity
