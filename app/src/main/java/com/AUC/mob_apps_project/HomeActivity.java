@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
                 CurrentUser.user = post;
                 TextView username = findViewById(R.id.Username);
                 username.setText("   "+CurrentUser.user.fullname+"   ");
-                TextView email = findViewById(R.id.textView);
+                TextView email = findViewById(R.id.EMAIL);
                 email.setText(" "+CurrentUser.user.email+" ");
 
             }

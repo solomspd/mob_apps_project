@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.AUC.mob_apps_project.Common.CurrentUser;
 import com.AUC.mob_apps_project.Model.UsersClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -94,10 +95,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     void check(){
+         Toast.makeText(LoginActivity.this, "Verifying login...", Toast.LENGTH_LONG).show();
+
         FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UsersClass x = dataSnapshot.getValue(UsersClass.class);
+                CurrentUser.user = x;
                 if(x.auth.equals("restaurant")) {
 //                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, control_panel.class);
