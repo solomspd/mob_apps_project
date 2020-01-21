@@ -13,21 +13,16 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.AUC.mob_apps_project.FoodActivity;
-import com.AUC.mob_apps_project.MenuActivity;
 import com.AUC.mob_apps_project.R;
 import com.AUC.mob_apps_project.RestaurantActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
+public class HomeFragment2 extends Fragment {
 
-public class HomeFragment extends Fragment {
-
+    FirebaseDatabase database;
+    DatabaseReference food;
+    String Cat_ID="",Rest_ID="";
     //    private HomeViewModel homeViewModel;
     ListView act1list;
     String[] ResName = new String[]{"House of Cocoa", "Mori Sushi", "McDonalds"};
@@ -36,19 +31,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-//        view.findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getActivity(), RestaurantActivity.class);
-//                i.putExtra("Restaurant", "Restaurant");
-//                startActivity(i);
-//
-//            }
-//        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
 
@@ -58,7 +41,6 @@ public class HomeFragment extends Fragment {
 
         imgbtn = (ImageButton) getView().findViewById(R.id.imgbtn);
 
-        Log.d("hhhhhhhhhhhh", "hhhhhhhhhhhhh");
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +60,7 @@ public class HomeFragment extends Fragment {
 //
 //        }
         //   imgs=nums2;
-        ListAdapter myAdapter = new ListAdapter(HomeFragment.this.getContext(), ResName, imgs);
+        ListAdapter myAdapter = new ListAdapter(HomeFragment2.this.getContext(), ResName, imgs);
         act1list.setAdapter(myAdapter);
         act1list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

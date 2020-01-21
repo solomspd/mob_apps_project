@@ -30,4 +30,8 @@
     <string name="menu_info">About Application</string>
 
     <string name="title_activity_table_sel">table_sel</string>
+
+    <string name="access_token">pk.eyJ1IjoiaGViYTAiLCJhIjoiY2oyajQxenNiMDAzYTJ4cGQyZzRvNms0aSJ9.RV_wnszP15bjliptZxT9MQ</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
 </resources>
