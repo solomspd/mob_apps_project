@@ -20,6 +20,7 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
         Rest_Name = getIntent().getStringExtra("Restaurant");
+
         Button button = findViewById(R.id.menu);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +31,18 @@ public class RestaurantActivity extends AppCompatActivity {
             startActivity(i);
             }
         });
+
+        Button booking = findViewById(R.id.booking);
+        booking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Database(getBaseContext()).cleanCart(); // Empty Cart
+                Intent i = new Intent(getApplicationContext(), table_sel.class);
+                i.putExtra("Restaurant", Rest_Name);
+                startActivity(i);
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

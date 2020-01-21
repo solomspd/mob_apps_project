@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.AUC.mob_apps_project.Model.UsersClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -41,8 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loading_login);
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            finish();
+            check();
+//            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+//            finish();
         }
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -79,24 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Login Successfully \n",Toast.LENGTH_LONG).show();
-                            FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()+"/auth").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Toast.makeText(LoginActivity.this, "IS AN OWNER", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(LoginActivity.this, control_panel.class);
-                                    String auth = dataSnapshot.getValue(String.class);
-                                    intent.putExtra("rest", auth);
-                                    startActivity(intent);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Toast.makeText(LoginActivity.this, "NOT AN OWNER", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-
-                                }
-                            });
+                           check();
 
                         }else {
                             Toast.makeText(LoginActivity.this,"ERROR\n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
@@ -104,6 +89,30 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+    }
+    void check(){
+        FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UsersClass x = dataSnapshot.getValue(UsersClass.class);
+                if(x.auth.equals("restaurant")) {
+//                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this, control_panel.class);
+                    intent.putExtra("rest", x.auth);
+                    startActivity(intent);
+                } else  if(x.auth.equals("user")) {
+//                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
