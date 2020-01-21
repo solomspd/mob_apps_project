@@ -20,6 +20,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CollapsedAppbar" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textSize">24sp</item>
@@ -31,9 +34,14 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">normal</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay">1</style>
-
-    <style name="AppTheme.PopupOverlay">1</style>
+    <style name="NavigationMapRoute">
+        <!-- Colors -->
+        <item name="routeColor">@color/mapboxBlue</item>
+        <item name="routeModerateCongestionColor">@color/mapboxYellow</item>
+        <item name="routeSevereCongestionColor">@color/mapboxPink</item>
+        <item name="routeShieldColor">@color/mapboxWhite</item>
+        <!-- Scales -->
+        <item name="routeScale">1.0</item>
+    </style>
 
 </resources>

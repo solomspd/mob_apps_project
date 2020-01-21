@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.AUC.mob_apps_project.Database.Database;
 import com.AUC.mob_apps_project.Common.CurrentUser;
+import com.AUC.mob_apps_project.ui.Navigation.Navigationn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class RestaurantActivity extends AppCompatActivity {
@@ -48,12 +49,18 @@ public class RestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Directios Map To Restaurant",Toast.LENGTH_SHORT).show();
-
+                Navigate();
             }
         });
     }
 
 
+    public void Navigate()
+    {
+        Intent intent = new Intent(this, Navigationn.class);
+        startActivity(intent);
+
+    }
 
 
 

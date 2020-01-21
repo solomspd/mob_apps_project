@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/custombackground1"
+    android:background="#F0F2EF"
     tools:context=".RestaurantActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.001"
-            android:background="@drawable/custombackground1"
+            android:background="#F0F2EF"
             android:orientation="horizontal"
 
             >
