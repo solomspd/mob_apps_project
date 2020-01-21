@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail,mPassword;
     Button login,register;
@@ -75,8 +80,24 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this,"Login Successfully \n",Toast.LENGTH_LONG).show();
+                            FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()+"/auth").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Toast.makeText(LoginActivity.this, "IS AN OWNER", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(LoginActivity.this, control_panel.class);
+                                    String auth = dataSnapshot.getValue(String.class);
+                                    intent.putExtra("rest", auth);
+                                    startActivity(intent);
+                                }
 
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Toast.makeText(LoginActivity.this, "NOT AN OWNER", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
+                                }
+                            });
+
                         }else {
                             Toast.makeText(LoginActivity.this,"ERROR\n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.INVISIBLE);

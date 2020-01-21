@@ -16,29 +16,51 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
+
+class pos {
+    float x, y;
+    int cont;
+    String str_cont;
+
+    pos (float x, float y, int cont, String str_cont) {
+        this.x = x;
+        this.y = y;
+        this.cont = cont;
+        this.str_cont = str_cont;
+    }
+}
 
 public class table_sel extends AppCompatActivity {
 
     ConstraintLayout layout;
+    ArrayList<pos> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ConstraintLayout constraintLayout;
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_table_sel);
 
-        // Create a ConstraintLayout in which to add the ImageView
-//        constraintLayout = new ConstraintLayout(this);
+        data = new ArrayList<>();
+        data.add(new pos(123, 200, 1, ""));
+        data.add(new pos(200, 300, 1, ""));
+        data.add(new pos(350, 300, 1, ""));
 
-        custom_canvas canvas = new custom_canvas(this);
+        layout = findViewById(R.id.table_sel_canvas);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        canvas.setBackgroundColor(Color.BLUE);
-
-        setContentView(canvas);
-
-        custom_butt butt = new custom_butt(this);
-
-        canvas.draw(butt);
+        for (pos i : data) {
+            ImageButton btn = new ImageButton(this);
+            btn.setLayoutParams(params);
+            btn.setBackgroundColor(Color.TRANSPARENT);
+            btn.setImageDrawable(getResources().getDrawable(R.drawable.test, null));
+            btn.setX(i.x);
+            btn.setY(i.y);
+            layout.addView(btn);
+        }
 
     }
 
@@ -48,35 +70,3 @@ public class table_sel extends AppCompatActivity {
 
 
 }
-
-class custom_butt extends View {
-
-    public custom_butt(Context context) {
-        super(context);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-
-    }
-
-}
-
-class custom_canvas extends View {
-
-    public custom_canvas(Context context) {
-        super(context);
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-
-    }
-
-    public void draw(custom_butt butt) {
-
-    }
-}
-

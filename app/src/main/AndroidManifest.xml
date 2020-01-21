@@ -3,16 +3,6 @@
     package="com.AUC.mob_apps_project">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -25,12 +15,25 @@
         <activity android:name=".Payment.PaymentDetails" />
         <activity android:name=".ui.home.map" />
         <activity android:name=".menu_item_edit" />
+        <activity android:name=".table_sel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".layout_editor"></activity>
+        <activity android:name=".payment_history"/>
+        <activity android:name=".menu_item_edit" />
         <activity android:name=".waiting_list" />
         <activity android:name=".menu_item" />
         <activity android:name=".control_panel" />
         <activity android:name=".RestaurantActivity" />
-        <activity android:name=".CartActivity" />
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <activity android:name=".CartActivity"></activity>
         <activity android:name=".FoodDetailActivity" />
+        <activity android:name=".RestaurantActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />
         <activity
@@ -40,11 +43,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".splashscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
