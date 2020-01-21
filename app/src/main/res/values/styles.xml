@@ -32,4 +32,8 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay">1</style>
+
+    <style name="AppTheme.PopupOverlay">1</style>
+
 </resources>

@@ -11,6 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".table_sel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".layout_editor"></activity>
         <activity android:name=".payment_history"/>
         <activity android:name=".menu_item_edit" />
@@ -22,7 +29,6 @@
         tools:replace="android:theme">
         <activity android:name=".CartActivity"></activity>
         <activity android:name=".FoodDetailActivity" />
-        <activity android:name=".RestaurantActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />
         <activity
@@ -32,11 +38,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".splashscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
