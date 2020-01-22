@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
 
@@ -59,6 +61,18 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
 
         TextView food_description = findViewById(R.id.food_description);
         food_description.setText(CurrentRestaurant.restaurant.description);
+
+        TextView menu_name = findViewById(R.id.menu_name);
+        menu_name.setText(CurrentRestaurant.restaurant.name);
+
+
+        ImageView img = findViewById(R.id.menu_image);
+//        Picasso.get().load(CurrentRestaurant.restaurant.image).into(img);
+        Picasso.get().load(CurrentRestaurant.restaurant.image).into(img);
+
+
+        TextView food_description2 = findViewById(R.id.food_description2);
+        food_description2.setText("City: "+CurrentRestaurant.restaurant.city+"\nPrice Range: "+CurrentRestaurant.restaurant.price_range);
 
 
         Button button = findViewById(R.id.menu);
