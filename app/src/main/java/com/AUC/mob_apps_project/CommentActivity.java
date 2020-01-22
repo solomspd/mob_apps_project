@@ -46,7 +46,7 @@ public class CommentActivity extends AppCompatActivity {
 
         //Firebase
         database = FirebaseDatabase.getInstance();
-        food = database.getReference("Requests");
+        food = database.getReference("Rating");
 
         //Load Menu
         recycler_menu = (RecyclerView)findViewById(R.id.recyclerComment);
@@ -65,7 +65,7 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Rating model, int position){
                 try {
-                    viewHolder.txtUserName.setText((model.getPhone()).toUpperCase());
+                    viewHolder.txtUserName.setText((model.getFullname()));
                     viewHolder.txtComment.setText(model.getComment());
                     viewHolder.ratingBar.setRating(Float.parseFloat(model.getValue()));
                 }catch (Exception e){

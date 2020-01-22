@@ -2,24 +2,29 @@ package com.AUC.mob_apps_project.Model;
 
 public class Rating {
 
-    private String phone;
+    private String fullname;
     private String restaurant;
     private String value;
     private String comment;
 
-    public Rating(String phone, String restaurant, String value, String comment) {
-        this.phone = phone;
+    public Rating(String fullname, String restaurant, String value, String comment) {
+        this.fullname = fullname;
         this.restaurant = restaurant;
         this.value = value;
         this.comment = comment;
     }
 
-    public String getPhone() {
-        return phone;
+    public Rating() {
+
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getRestaurant() {

@@ -154,7 +154,7 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
 
     @Override
     public void onPositiveButtonClicked(int i, @NotNull String s) {
-        final Rating rating = new Rating(CurrentUser.user.phone,Rest_Name,String.valueOf(i),s);
+        final Rating rating = new Rating(CurrentUser.user.fullname,Rest_Name,String.valueOf(i),s);
         ratingtbl.push().setValue(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

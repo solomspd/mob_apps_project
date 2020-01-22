@@ -57,13 +57,17 @@ public class HomeActivity extends AppCompatActivity {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                UsersClass post = dataSnapshot.getValue(UsersClass.class);
-                CurrentUser.user = post;
-                TextView username = findViewById(R.id.Username);
-                username.setText("   "+CurrentUser.user.fullname+"   ");
-                TextView email = findViewById(R.id.EMAIL);
-                email.setText(" "+CurrentUser.user.email+" ");
+                try {
+                    // Get Post object and use the values to update the UI
+                    UsersClass post = dataSnapshot.getValue(UsersClass.class);
+                    CurrentUser.user = post;
+                    TextView username = findViewById(R.id.Username);
+                    username.setText("   " + CurrentUser.user.fullname + "   ");
+                    TextView email = findViewById(R.id.EMAIL);
+                    email.setText(" " + CurrentUser.user.email + " ");
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_LONG).show();
+                }
 
             }
 
