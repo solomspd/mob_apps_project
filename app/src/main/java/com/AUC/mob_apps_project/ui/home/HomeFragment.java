@@ -9,12 +9,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.AUC.mob_apps_project.Common.CurrentRestaurant;
 import com.AUC.mob_apps_project.FoodActivity;
+import com.AUC.mob_apps_project.LoadingRestaurant;
 import com.AUC.mob_apps_project.MenuActivity;
+import com.AUC.mob_apps_project.Model.RestaurantClass;
+import com.AUC.mob_apps_project.Model.UsersClass;
 import com.AUC.mob_apps_project.R;
 import com.AUC.mob_apps_project.RestaurantActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +57,8 @@ public class HomeFragment extends Fragment {
     }
 
 
+
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.search_fragment);
@@ -84,7 +91,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+                Intent intent = new Intent(getActivity(), LoadingRestaurant.class);
                 intent.putExtra("Restaurant", "Restaurant");
                 startActivity(intent);
 //                Intent mIntent = new Intent(HomeFragment.this.getContext(), DetailActivity.class);

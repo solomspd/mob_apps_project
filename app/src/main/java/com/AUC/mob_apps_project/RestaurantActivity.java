@@ -8,15 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.AUC.mob_apps_project.Common.CurrentRestaurant;
 import com.AUC.mob_apps_project.Database.Database;
 import com.AUC.mob_apps_project.Common.CurrentUser;
 import com.AUC.mob_apps_project.Model.Rating;
+import com.AUC.mob_apps_project.Model.RestaurantClass;
+import com.AUC.mob_apps_project.Model.UsersClass;
 import com.AUC.mob_apps_project.ui.Navigation.Navigationn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,19 +41,24 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
     RatingBar ratingBar;
     FirebaseDatabase database;
     DatabaseReference ratingtbl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
-        Rest_Name = getIntent().getStringExtra("Restaurant");
 
-        btnRating = (FloatingActionButton) findViewById(R.id.btn_rating);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        Rest_Name = getIntent().getStringExtra("Restaurant");
         database = FirebaseDatabase.getInstance();
         ratingtbl = database.getReference("Rating");
 
+
+        btnRating = (FloatingActionButton) findViewById(R.id.btn_rating);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
         getRating(Rest_Name);
+
+        TextView food_description = findViewById(R.id.food_description);
+        food_description.setText(CurrentRestaurant.restaurant.description);
 
 
         Button button = findViewById(R.id.menu);
@@ -162,26 +172,7 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
 
             }
         });
-        /*
-        ratingtbl.child(CurrentUser.user.phone).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(CurrentUser.user.phone).exists()){
-                    ratingtbl.child(CurrentUser.user.phone).removeValue();
-                    ratingtbl.child(CurrentUser.user.phone).setValue(rating);
-                } else{
-                    ratingtbl.child(CurrentUser.user.phone).setValue(rating);
-                }
-                Toast.makeText(RestaurantActivity.this,"Thank you for your feedback!",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-         */
-
 
     }
+
 }

@@ -11,31 +11,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Navigation.Navigationn"></activity>
+        <activity android:name=".LoadingRestaurant"></activity>
+        <activity android:name=".ui.Navigation.Navigationn" />
         <activity android:name=".Payment.PaymentDetails" />
         <activity android:name=".ui.home.map" />
         <activity android:name=".menu_item_edit" />
         <activity android:name=".table_sel">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".layout_editor">
-<!--                        <intent-filter>-->
-<!--                            <action android:name="android.intent.action.MAIN" />-->
 
-<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                        </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".payment_history"/>
+        <activity android:name=".payment_history" />
         <activity android:name=".waiting_list" />
         <activity android:name=".menu_item" />
         <activity android:name=".control_panel" />
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".CommentActivity" />
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity" />
         <activity android:name=".FoodDetailActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".MenuActivity" />

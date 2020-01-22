@@ -9,14 +9,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.AUC.mob_apps_project.Common.CurrentRestaurant;
+import com.AUC.mob_apps_project.Common.CurrentUser;
+import com.AUC.mob_apps_project.Model.RestaurantClass;
+import com.AUC.mob_apps_project.Model.UsersClass;
 import com.AUC.mob_apps_project.R;
 import com.AUC.mob_apps_project.RestaurantActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeFragment2 extends Fragment {
 
@@ -85,4 +93,5 @@ public class HomeFragment2 extends Fragment {
         startActivity(intent);
 
     }
+
 }
