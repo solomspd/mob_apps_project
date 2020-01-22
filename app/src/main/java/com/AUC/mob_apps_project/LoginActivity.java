@@ -97,17 +97,16 @@ public class LoginActivity extends AppCompatActivity {
     void check(){
          Toast.makeText(LoginActivity.this, "Verifying login...", Toast.LENGTH_LONG).show();
 
-        FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()+"/auth").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UsersClass x = dataSnapshot.getValue(UsersClass.class);
-                CurrentUser.user = x;
-                if(x.auth.equals("restaurant")) {
+                String x = dataSnapshot.getValue(String.class);
+                if(x != null) {
 //                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, control_panel.class);
-                    intent.putExtra("rest", x.auth);
+                    intent.putExtra("rest", x);
                     startActivity(intent);
-                } else  if(x.auth.equals("user")) {
+                } else {
 //                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),HomeActivity.class));
 
