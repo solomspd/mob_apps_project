@@ -30,6 +30,7 @@ public class LoadingRestaurant extends AppCompatActivity {
             @Override
             public void run() {
                 Intent homeIntent = new Intent(LoadingRestaurant.this, RestaurantActivity.class);
+                homeIntent.putExtra("Restaurant", getIntent().getStringExtra("Restaurant"));
                 startActivity(homeIntent);
                 finish();
             }

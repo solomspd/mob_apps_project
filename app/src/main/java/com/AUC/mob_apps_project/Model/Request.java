@@ -9,17 +9,27 @@ public class Request {
     private String total;
     private String fullname;
     private List<Order> foods;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Request(){
 
     }
 
-    public Request(String phone, String restaurant, String total, String fullname, List<Order> foods) {
+    public Request(String phone, String restaurant, String total, String fullname, List<Order> foods,String status) {
         this.phone = phone;
         this.restaurant = restaurant;
         this.total = total;
         this.fullname = fullname;
         this.foods = foods;
+        this.status = status;
     }
 
     public String getPhone() {

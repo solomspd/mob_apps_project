@@ -165,6 +165,8 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
     public void Navigate()
     {
         Intent intent = new Intent(this, Navigationn.class);
+
+
         startActivity(intent);
 
     }

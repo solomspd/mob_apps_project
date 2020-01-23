@@ -16,14 +16,17 @@ public class control_panel extends AppCompatActivity {
         setContentView(R.layout.activity_control_panel);
 
         Intent prev_int = getIntent();
-        rest = prev_int.getStringExtra("rest");
+        rest = prev_int.getStringExtra("Restaurant");
+
+        //test
+        rest = "Restaurant";
 
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(control_panel.this, MenuActivity.class);
-                intent.putExtra("rest", rest);
+                intent.putExtra("Restaurant", rest);
                 startActivity(intent);
             }
         });

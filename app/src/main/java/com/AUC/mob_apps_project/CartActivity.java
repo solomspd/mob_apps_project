@@ -87,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Order e = new Order();
-                Request request = new Request(CurrentUser.user.phone,Rest_ID,txtTotalPrice.getText().toString(),CurrentUser.user.fullname,cart);
+                Request request = new Request(CurrentUser.user.phone,Rest_ID,txtTotalPrice.getText().toString(),CurrentUser.user.fullname,cart,"0");
                 if(!cart.isEmpty()) {
                     String time = String.valueOf(System.currentTimeMillis());
                     requests.child(time).setValue(request); // Submit
