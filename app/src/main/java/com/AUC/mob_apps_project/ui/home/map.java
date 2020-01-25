@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.AUC.mob_apps_project.Model.Restaurant;
 import com.AUC.mob_apps_project.R;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
@@ -33,6 +35,13 @@ public class map extends AppCompatActivity implements
     private static final String ICON_ID = "ICON_ID";
     private static final String LAYER_ID = "LAYER_ID";
     private MapView mapView;
+    //   DatabaseReference reference;
+    ArrayList<Restaurant> list;
+
+    public map() {
+        list = HomeFragment.getRestaurantslist();
+        Log.d("resname", String.valueOf(list.get(0).getLongitude()));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +57,54 @@ public class map extends AppCompatActivity implements
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        Log.d("pppppp","ffffffffffff");
+
     }
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
-        List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
-        symbolLayerIconFeatureList.add(Feature.fromGeometry(
-                Point.fromLngLat(31.477112,30.041442 )));
-        symbolLayerIconFeatureList.add(Feature.fromGeometry(
-                Point.fromLngLat(31.334667,30.087521)));
-        symbolLayerIconFeatureList.add(Feature.fromGeometry(
-                Point.fromLngLat(31.348076,30.086628)));
+        final List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
+        //     Restaurantslist
+//        reference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                list= new ArrayList<Restaurant>();
+//                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+//                {
+//                    Restaurant p =dataSnapshot1.getValue(Restaurant.class);
+//                    double g = p.getLongitude();
+//                    Log.d("ffffffffffff",p.name);
+//                    list.add(p);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(map.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+
+
+        for (int i=0; i<list.size();i++)
+        {
+            Log.d("list size", String.valueOf(list.size()));
+            Log.d("lllllll",String.valueOf(list.get(i).getLongitude()));
+
+            symbolLayerIconFeatureList.add(Feature.fromGeometry(
+                    Point.fromLngLat(list.get(i).getLongitude(),list.get(i).getLatitude())));
+        }
+
+
+//               symbolLayerIconFeatureList.add(Feature.fromGeometry(
+//                Point.fromLngLat(31.477112,30.041442 )));
+//        symbolLayerIconFeatureList.add(Feature.fromGeometry(
+//                Point.fromLngLat(31.334667,30.087521)));
+//        symbolLayerIconFeatureList.add(Feature.fromGeometry(
+//                Point.fromLngLat(31.348076,30.086628)));
 
         mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
 

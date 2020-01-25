@@ -2,6 +2,7 @@ package com.AUC.mob_apps_project.ViewHolder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.AUC.mob_apps_project.Interface.ItemClickListener;
 import com.AUC.mob_apps_project.Model.Restaurant;
 import com.AUC.mob_apps_project.R;
-import com.AUC.mob_apps_project.RestaurantActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,8 +40,13 @@ public class ResAdapter extends RecyclerView.Adapter<ResViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ResViewHolder holder, int position)
     {
-    //    holder.restImgView
+        //    holder.restImgView
         holder.RestTxt.setText(restaurant.get(position).getName());
+        restaurant.get(position).getLongitude();
+        restaurant.get(position).getLatitude();
+     //   Log.d("gggggggggggggggggg",restaurant.get(position).getCity());
+
+
         Picasso.get().load(restaurant.get(position).getImage()).into(holder.restImgView);
 
         holder.setItemClickListener(new ItemClickListener() {
@@ -49,8 +54,8 @@ public class ResAdapter extends RecyclerView.Adapter<ResViewHolder> {
             public void OnClick(View view, int position, boolean isLongClick) {
 
                 //   i.putExtra("RestId",Rest_ID);
-             //   i.putExtra("FoodId", adapter.getRef(position).getKey());
-                try {Intent i = new Intent(context, RestaurantActivity.class);
+                //   i.putExtra("FoodId", adapter.getRef(position).getKey());
+                try {Intent i = new Intent(context, Restaurant.class);
                     context.startActivity(i);
 
                 }catch(Exception e){

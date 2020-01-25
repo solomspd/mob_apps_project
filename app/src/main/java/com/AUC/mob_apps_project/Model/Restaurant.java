@@ -14,7 +14,7 @@ public class Restaurant {
         this.latitude = latitude;
         this.longitude = longitude;
         this.city = city;
-      }
+    }
 
     public void setName(String name) {
         this.name = name;
