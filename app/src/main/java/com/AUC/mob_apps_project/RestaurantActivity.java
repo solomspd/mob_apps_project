@@ -126,7 +126,7 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
 
     private void getRating(String rest_name) {
 
-        com.google.firebase.database.Query foodRating = ratingtbl.orderByChild("Restaurant").equalTo(rest_name);
+        com.google.firebase.database.Query foodRating = ratingtbl.orderByChild("restaurant").equalTo(rest_name);
         foodRating.addValueEventListener(new ValueEventListener() {
             int c=0,s=0;
             @Override

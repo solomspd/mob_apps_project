@@ -61,7 +61,7 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     private void loadComment() {
-        adapter = new FirebaseRecyclerAdapter<Rating, CommentViewHolder>(Rating.class,R.layout.comment_layout,CommentViewHolder.class,food){
+        adapter = new FirebaseRecyclerAdapter<Rating, CommentViewHolder>(Rating.class,R.layout.comment_layout,CommentViewHolder.class,food.orderByChild("restaurant").equalTo(Rest_ID)){
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Rating model, int position){
                 try {

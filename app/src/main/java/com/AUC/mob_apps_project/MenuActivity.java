@@ -68,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category.orderByChild("name")){
+        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class,R.layout.menu_item,MenuViewHolder.class,category){
             @Override
             protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position){
                     viewHolder.txtMenuName.setText((model.name).toUpperCase());
