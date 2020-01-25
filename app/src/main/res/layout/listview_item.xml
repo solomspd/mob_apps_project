@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="1dp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#a93d4d">
+        android:layout_height="50dp"
+        android:paddingBottom="5dp"
+        android:background="#a93d4d"
+        tools:ignore="MissingConstraints">
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:paddingBottom="0.5dp"
             android:paddingLeft="20dp"
             android:layout_gravity="left"
@@ -30,7 +33,7 @@
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:paddingBottom="10dp"
-           android:layout_toRightOf="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
             android:gravity="right"
             android:textColor="#F0F2EF"
             android:layout_alignParentBottom="true"

@@ -33,7 +33,7 @@ public class CommentActivity extends AppCompatActivity {
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager LayoutManager;
 
-    FirebaseRecyclerAdapter<Rating, CommentViewHolder>adapter;
+    FirebaseRecyclerAdapter<Rating, CommentViewHolder> adapter;
 
 
     @Override
