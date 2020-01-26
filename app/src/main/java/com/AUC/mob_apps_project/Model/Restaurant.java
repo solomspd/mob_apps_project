@@ -2,18 +2,21 @@ package com.AUC.mob_apps_project.Model;
 
 public class Restaurant {
 
-    public String name, image,city;
+    public String name, image,city,description;
     Double latitude,longitude;
     public Restaurant(){
 
     }
 
-    public Restaurant(String city, String image, Double latitude, Double longitude, String name) {
+
+
+    public Restaurant(String city, String image, Double latitude, Double longitude, String name, String description) {
         this.name = name;
         this.image = image;
         this.latitude = latitude;
         this.longitude = longitude;
         this.city = city;
+        this.description = description;
     }
 
     public void setName(String name) {
@@ -55,6 +58,10 @@ public class Restaurant {
     public Double getLongitude() {
         return longitude;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description;  }
 }
 
 

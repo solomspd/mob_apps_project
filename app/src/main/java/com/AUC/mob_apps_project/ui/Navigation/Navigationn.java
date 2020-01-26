@@ -57,10 +57,16 @@ public class Navigationn  extends AppCompatActivity implements OnMapReadyCallbac
     private NavigationMapRoute navigationMapRoute;
     // variables needed to initialize navigation
     private Button button;
-
+    private double longitude,latitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//get restaurant longitude and latitude from previous activity
+
+        Log.d("longituuuuuuuuuuuude",getIntent().getStringExtra("Longitude"));
+        longitude = Double.parseDouble(getIntent().getStringExtra("Longitude"));
+        latitude = Double.parseDouble(getIntent().getStringExtra("Latitude"));
+
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_navigationn);
         mapView = (MapView) findViewById(R.id.mapView);
@@ -83,7 +89,7 @@ public class Navigationn  extends AppCompatActivity implements OnMapReadyCallbac
                 button = findViewById(R.id.startButton);
 
 
-                Point destinationPoint = Point.fromLngLat(31.477112, 30.041442);
+                Point destinationPoint = Point.fromLngLat(longitude, latitude);
                 Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
                         locationComponent.getLastKnownLocation().getLatitude());
 

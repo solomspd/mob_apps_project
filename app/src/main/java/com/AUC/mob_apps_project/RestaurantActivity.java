@@ -43,6 +43,8 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
     RatingBar ratingBar;
     FirebaseDatabase database;
     DatabaseReference ratingtbl;
+    String longitude;
+    String latitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,8 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
 
 
         Rest_Name = getIntent().getStringExtra("Restaurant");
+        longitude = getIntent().getStringExtra("Longitude");
+        latitude = getIntent().getStringExtra("Latitude");
         database = FirebaseDatabase.getInstance();
         ratingtbl = database.getReference("Rating");
 
@@ -165,8 +169,8 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
     public void Navigate()
     {
         Intent intent = new Intent(this, Navigationn.class);
-
-
+        intent.putExtra("Longitude", longitude);
+        intent.putExtra("Latitude", latitude);
         startActivity(intent);
 
     }

@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Restaurantslist= new ArrayList<Restaurant>();
+                Restaurantslist.clear();
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                 {
 
@@ -91,6 +91,54 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(HomeFragment.this.getContext(), "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+
+
+
+
+
+        searchInp.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // your text view here
+                //   textView.setText(newText);
+                ArrayList<Restaurant> newList = new ArrayList<>(Restaurantslist);
+                if(newText.equals(""))
+                {
+                    adapter = new ResAdapter(HomeFragment.this.getContext(),Restaurantslist);
+                    recyclerView.setAdapter(adapter);
+                    //   Log.d("searchhhhhhhhhhhhhh","hhhhhhhhhh");
+                }
+                else{
+
+                    for (int i=(Restaurantslist.size()-1); i>=0;i--)
+                    {
+
+                        if(!((newList.get(i).name.toLowerCase()).contains(newText)) &&
+                                !((newList.get(i).city.toLowerCase()).contains(newText)) &&
+                                !((newList.get(i).description.toLowerCase()).contains(newText)) //&&
+                        )
+                        {
+                            newList.remove(i);
+                        }
+                    }
+                    adapter = new ResAdapter(HomeFragment.this.getContext(),newList);
+                    recyclerView.setAdapter(adapter);
+                }
+                //
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //   textView.setText(query);
+                // Log.d("searchhhhhhhhhhhhhhmmmmm","hhhhhhhhhh");
+
+                return true;
             }
         });
     }

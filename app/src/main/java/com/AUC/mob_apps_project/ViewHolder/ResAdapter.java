@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.AUC.mob_apps_project.Interface.ItemClickListener;
+import com.AUC.mob_apps_project.LoadingRestaurant;
 import com.AUC.mob_apps_project.Model.Restaurant;
 import com.AUC.mob_apps_project.R;
 import com.squareup.picasso.Picasso;
@@ -44,6 +45,7 @@ public class ResAdapter extends RecyclerView.Adapter<ResViewHolder> {
         holder.RestTxt.setText(restaurant.get(position).getName());
         restaurant.get(position).getLongitude();
         restaurant.get(position).getLatitude();
+        restaurant.get(position).getDescription();
      //   Log.d("gggggggggggggggggg",restaurant.get(position).getCity());
 
 
@@ -53,9 +55,13 @@ public class ResAdapter extends RecyclerView.Adapter<ResViewHolder> {
             @Override
             public void OnClick(View view, int position, boolean isLongClick) {
 
-                //   i.putExtra("RestId",Rest_ID);
-                //   i.putExtra("FoodId", adapter.getRef(position).getKey());
-                try {Intent i = new Intent(context, Restaurant.class);
+
+                try {Intent i = new Intent(context, LoadingRestaurant.class);
+                    i.putExtra("Restaurant", restaurant.get(position).name);
+                    i.putExtra("Longitude", String.valueOf((restaurant.get(position).getLongitude())));
+                    i.putExtra("Latitude", String.valueOf(restaurant.get(position).getLatitude()));
+//                    i.putExtra("RestId",Rest_ID);
+//                    i.putExtra("FoodId", adapter.getRef(position).getKey());
                     context.startActivity(i);
 
                 }catch(Exception e){

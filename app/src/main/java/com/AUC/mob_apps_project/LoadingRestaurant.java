@@ -31,6 +31,8 @@ public class LoadingRestaurant extends AppCompatActivity {
             public void run() {
                 Intent homeIntent = new Intent(LoadingRestaurant.this, RestaurantActivity.class);
                 homeIntent.putExtra("Restaurant", getIntent().getStringExtra("Restaurant"));
+                homeIntent.putExtra("Longitude", getIntent().getStringExtra("Longitude"));
+                homeIntent.putExtra("Latitude", getIntent().getStringExtra("Latitude"));
                 startActivity(homeIntent);
                 finish();
             }
