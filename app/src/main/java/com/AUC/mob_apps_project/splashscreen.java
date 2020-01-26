@@ -74,16 +74,17 @@ public class splashscreen extends AppCompatActivity {
     void check(){
 
         FirebaseDatabase.getInstance().getReference("/Users/"+fAuth.getCurrentUser().getUid()+"/auth").addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String x = dataSnapshot.getValue(String.class);
                 if(x != null) {
-//                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
+                    Toast.makeText(splashscreen.this, "CONTROL PANEL", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(splashscreen.this, control_panel.class);
                     intent.putExtra("rest", x);
                     startActivity(intent);
                 } else {
-//                    Toast.makeText(LoginActivity.this, x.auth, Toast.LENGTH_LONG).show();
+                    Toast.makeText(splashscreen.this, "HOME ACTIVITY", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),HomeActivity.class));
 
                 }

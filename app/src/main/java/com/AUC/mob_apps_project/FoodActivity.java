@@ -43,6 +43,7 @@ public class FoodActivity extends AppCompatActivity {
         Rest_ID = getIntent().getStringExtra("RestId");
         TextView foodheader = findViewById(R.id.foodheader);
         owner = getIntent().getExtras().getBoolean("owner");
+//        Toast.makeText(getApplicationContext(),"Table "+getIntent().getExtras().getString("table")+" has been booked",Toast.LENGTH_SHORT).show();
 
         if (!owner) {
             fab.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +51,8 @@ public class FoodActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent cartIntent = new Intent(FoodActivity.this, CartActivity.class);
                     cartIntent.putExtra("Restaurant", Rest_ID);
+                    cartIntent.putExtra("table", getIntent().getExtras().getString("table"));
+
                     startActivity(cartIntent);
 
                 }

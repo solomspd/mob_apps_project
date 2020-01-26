@@ -65,7 +65,7 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+        Toast.makeText(getApplicationContext(),"Table "+getIntent().getExtras().getString("table")+" has been booked",Toast.LENGTH_SHORT).show();
         database = FirebaseDatabase.getInstance();
         requests=database.getReference("Requests");
         Rest_ID = getIntent().getStringExtra("Restaurant");

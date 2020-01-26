@@ -32,6 +32,7 @@ public class MenuActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
     String Rest_ID="";
     boolean owner;
+    static String table;
 
 
     @Override
@@ -41,14 +42,15 @@ public class MenuActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab2);
         Rest_ID = getIntent().getStringExtra("Restaurant");
         owner = getIntent().getExtras().getBoolean("owner");
-
+        table = getIntent().getExtras().getString("table");
+        Toast.makeText(getApplicationContext(),"Table "+table+" has been booked",Toast.LENGTH_SHORT).show();
         if (!owner) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                    Intent cartIntent = new Intent (MenuActivity.this,CartActivity.class);
                     cartIntent.putExtra("Restaurant",Rest_ID);
-                    cartIntent.putExtra("table", getIntent().getExtras().getString("table"));
+                    cartIntent.putExtra("table", table);
                     startActivity(cartIntent);}
             });
         } else {

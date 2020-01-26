@@ -36,6 +36,36 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/lay_bg"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/layout_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Restaurant Layout"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/layout_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:padding="8dp"
+            app:srcCompat="@drawable/test" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/payments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,7 +124,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout"
+        android:id="@+id/log_out_cp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -102,25 +132,24 @@
         android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
-
         <TextView
-            android:id="@+id/layout_txt"
+            android:id="@+id/log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Restaurant Layout"
+            android:text="Logout"
             android:textColor="#FFFFFF"
             android:textSize="36sp" />
 
         <ImageView
-            android:id="@+id/layout_img"
+            android:id="@+id/log_out_img"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:padding="8dp"
-            app:srcCompat="@drawable/test" />
+            app:srcCompat="@drawable/ic_exit_to_app_black_24dp" />
     </LinearLayout>
 
 </LinearLayout>

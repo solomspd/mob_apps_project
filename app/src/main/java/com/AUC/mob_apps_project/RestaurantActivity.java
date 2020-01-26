@@ -139,6 +139,8 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 table = String.valueOf(data.getExtras().getLong("table"));
+                Toast.makeText(getApplicationContext(),"Table "+table+" has been booked",Toast.LENGTH_SHORT).show();
+
             }
         }
     }
