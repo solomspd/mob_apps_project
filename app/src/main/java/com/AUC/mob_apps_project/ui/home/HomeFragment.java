@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +32,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 public class HomeFragment extends Fragment {
     DatabaseReference reference;
     RecyclerView recyclerView;
@@ -46,8 +51,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
         return view;
     }
 
@@ -57,6 +60,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.fragment_home);
+
+//        locationEngine = new LostLocationEngine(HomeFragment.this);
+//        locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
+//        locationEngine.setInterval(5000);
+//        locationEngine.activate();
+//        Location lastLocation = locationEngine.getLastLocation();
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerViewHome);
         searchInp = (SearchView) getView().findViewById(R.id.searchInp);

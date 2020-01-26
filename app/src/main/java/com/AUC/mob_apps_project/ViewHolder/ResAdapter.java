@@ -60,8 +60,6 @@ public class ResAdapter extends RecyclerView.Adapter<ResViewHolder> {
                     i.putExtra("Restaurant", restaurant.get(position).name);
                     i.putExtra("Longitude", String.valueOf((restaurant.get(position).getLongitude())));
                     i.putExtra("Latitude", String.valueOf(restaurant.get(position).getLatitude()));
-//                    i.putExtra("RestId",Rest_ID);
-//                    i.putExtra("FoodId", adapter.getRef(position).getKey());
                     context.startActivity(i);
 
                 }catch(Exception e){

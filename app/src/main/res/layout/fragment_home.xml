@@ -17,14 +17,13 @@
         android:orientation="horizontal">
 
 
-
         <SearchView
             android:id="@+id/searchInp"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="search for restaurants"
-            android:background="@color/common_google_signin_btn_text_dark_default"></SearchView>
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:hint="search for restaurants by name, city or keyword"></SearchView>
 
         <ImageButton
             android:id="@+id/imgbtn"
