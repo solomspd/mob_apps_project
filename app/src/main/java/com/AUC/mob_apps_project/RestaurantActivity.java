@@ -45,11 +45,13 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
     DatabaseReference ratingtbl;
     String longitude;
     String latitude;
+    String table;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
-
+        table = "N/A";
 
         Rest_Name = getIntent().getStringExtra("Restaurant");
         longitude = getIntent().getStringExtra("Longitude");
@@ -86,6 +88,7 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
             new Database(getBaseContext()).cleanCart(); // Empty Cart
             Intent i = new Intent(getApplicationContext(), MenuActivity.class);
             i.putExtra("Restaurant", Rest_Name);
+            i.putExtra("table", table);
             startActivity(i);
             }
         });
@@ -108,7 +111,7 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
                 new Database(getBaseContext()).cleanCart(); // Empty Cart
                 Intent i = new Intent(getApplicationContext(), table_sel.class);
                 i.putExtra("Restaurant", Rest_Name);
-                startActivity(i);
+                startActivityForResult(i, 1);
             }
         });
 
@@ -126,6 +129,18 @@ public class RestaurantActivity extends AppCompatActivity implements RatingDialo
                 showRating();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                table = String.valueOf(data.getExtras().getLong("table"));
+            }
+        }
     }
 
     private void getRating(String rest_name) {

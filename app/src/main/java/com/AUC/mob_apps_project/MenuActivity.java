@@ -31,6 +31,7 @@ public class MenuActivity extends AppCompatActivity {
     RecyclerView.LayoutManager LayoutManager;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
     String Rest_ID="";
+    boolean owner;
 
 
     @Override
@@ -39,13 +40,27 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         FloatingActionButton fab = findViewById(R.id.fab2);
         Rest_ID = getIntent().getStringExtra("Restaurant");
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               Intent cartIntent = new Intent (MenuActivity.this,CartActivity.class);
-                cartIntent.putExtra("Restaurant",Rest_ID);
-                startActivity(cartIntent);            }
-        });
+        owner = getIntent().getExtras().getBoolean("owner");
+
+        if (!owner) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   Intent cartIntent = new Intent (MenuActivity.this,CartActivity.class);
+                    cartIntent.putExtra("Restaurant",Rest_ID);
+                    cartIntent.putExtra("table", getIntent().getExtras().getString("table"));
+                    startActivity(cartIntent);}
+            });
+        } else {
+            fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_add, null));
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            fab.hide();
+        }
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -82,6 +97,7 @@ public class MenuActivity extends AppCompatActivity {
                             i.putExtra("RestId",Rest_ID);
                             i.putExtra("Name", adapter.getRef(position).getKey());
                             i.putExtra("Title", adapter.getItem(position).name);
+                            i.putExtra("owner", owner);
                         try {
                                 startActivity(i);
                             }catch(Exception e){

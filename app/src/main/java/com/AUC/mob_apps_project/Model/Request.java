@@ -8,8 +8,27 @@ public class Request {
     private String restaurant;
     private String total;
     private String fullname;
+    private String table;
+
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
     private List<Order> foods;
     private String status;
+    private long time;
 
     public String getStatus() {
         return status;

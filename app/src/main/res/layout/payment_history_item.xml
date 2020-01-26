@@ -5,14 +5,31 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
-    <TextView
-        android:id="@+id/pay_time"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="Time"
-        android:textColor="#000000"
-        android:textSize="36sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pay_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Time"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/pay_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="10sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -59,7 +59,6 @@ public class CartActivity extends AppCompatActivity {
     {
         stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
-
     }
 
     @Override
@@ -87,7 +86,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Order e = new Order();
-                Request request = new Request(CurrentUser.user.phone,Rest_ID,txtTotalPrice.getText().toString(),CurrentUser.user.fullname,cart,"0");
+                Request request = new Request(CurrentUser.user.phone, Rest_ID,txtTotalPrice.getText().toString(), CurrentUser.user.fullname, cart,"0");
+                request.setTable(getIntent().getExtras().getString("table"));
                 if(!cart.isEmpty()) {
                     String time = String.valueOf(System.currentTimeMillis());
                     requests.child(time).setValue(request); // Submit
@@ -95,8 +95,6 @@ public class CartActivity extends AppCompatActivity {
 //                    requests.child(time).setValue(cart);
                     new Database(getBaseContext()).cleanCart();                 // Delete Cart
                     Toast.makeText(CartActivity.this,"Thank you, Checking out..", Toast.LENGTH_SHORT).show();
-
-
 
                 } else {
                     Toast.makeText(CartActivity.this, "Your cart is empty!", Toast.LENGTH_SHORT).show();
@@ -144,32 +142,25 @@ public class CartActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if(requestCode == PAYPAL_REQUEST_CODE)
-        {
-            if(resultCode==RESULT_OK)
-            {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
                 PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-                if(confirmation != null )
-                {
-                    try{
+                if (confirmation != null) {
+                    try {
                         String paymentDetails = confirmation.toJSONObject().toString(4);
                         startActivity(new Intent(this, PaymentDetails.class)
                                 .putExtra("PaymentDetails", paymentDetails)
-                                .putExtra("PaymentAmount",amount));
-                    }
-                    catch (JSONException e)
-                    {
+                                .putExtra("PaymentAmount", amount));
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
             }
-            else if(resultCode == Activity.RESULT_CANCELED){
-                Toast.makeText(this,"Cancel", Toast.LENGTH_SHORT).show();
-            }}
-        else if(resultCode == PaymentActivity.RESULT_EXTRAS_INVALID)
-        {
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
             Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
         }
     }

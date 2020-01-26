@@ -38,10 +38,6 @@ public class Database extends SQLiteAssetHelper {
                        c.getString(c.getColumnIndex("Discount"))
                ));
 
-
-
-               ;
-
             } while (c.moveToNext());
         }
         return result;
