@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class waiting_list extends AppCompatActivity implements add_wait_list.add_wait_inter{
 
@@ -170,6 +174,16 @@ class wait_adapter extends RecyclerView.Adapter<wait_adapter.viewholder> {
                 ids.remove(position);
                 data.remove(position);
                 notifyItemRemoved(position);
+            }
+        });
+        holder.contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_SEND);
+//                intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+//                intent.setType("vnd.android-dir/mms-sms");
+//                intent.putExtra("address", data.get(position).getPhone());
+//                startActivity(intent);
             }
         });
     }
