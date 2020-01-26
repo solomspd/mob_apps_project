@@ -16,7 +16,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mImageView = (ImageView) findViewById(R.id.imageView2);
+        mImageView = (ImageView) findViewById(R.id.item_pic);
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {

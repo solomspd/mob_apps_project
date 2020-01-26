@@ -56,8 +56,8 @@
         app:elevation="6dp"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
-        app:useCompatPadding="true"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        app:useCompatPadding="true" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

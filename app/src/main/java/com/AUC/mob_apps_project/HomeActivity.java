@@ -49,7 +49,11 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        try {
+            reference = database.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        } catch (Exception err) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
         UsersClass temp = new UsersClass();
 
 

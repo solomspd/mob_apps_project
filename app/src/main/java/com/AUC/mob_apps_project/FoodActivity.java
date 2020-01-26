@@ -32,6 +32,7 @@ public class FoodActivity extends AppCompatActivity {
     RecyclerView.LayoutManager LayoutManager;
 
     FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
+    boolean owner;
 
 
     @Override
@@ -41,19 +42,34 @@ public class FoodActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab2);
         Rest_ID = getIntent().getStringExtra("RestId");
         TextView foodheader = findViewById(R.id.foodheader);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cartIntent = new Intent (FoodActivity.this,CartActivity.class);
-                cartIntent.putExtra("Restaurant",Rest_ID);
-                startActivity(cartIntent);
+        owner = getIntent().getExtras().getBoolean("owner");
 
-            }
-        });
+        if (!owner) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent cartIntent = new Intent(FoodActivity.this, CartActivity.class);
+                    cartIntent.putExtra("Restaurant", Rest_ID);
+                    startActivity(cartIntent);
+
+                }
+            });
+        } else {
+            fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_add, null));
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            fab.hide();
+
+        }
 
         //Firebase
         database = FirebaseDatabase.getInstance();
         food = database.getReference("Restaurant").child(Rest_ID).child("Food");
+        owner = getIntent().getExtras().getBoolean("owner");
 
         //Load Menu
         recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
@@ -72,7 +88,7 @@ public class FoodActivity extends AppCompatActivity {
 
     }
 
-    private void loadFood(String Cat_ID) {
+    private void loadFood(final String Cat_ID) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,R.layout.menu_item,FoodViewHolder.class,food.orderByChild("menuId").equalTo(Cat_ID)){
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position){
@@ -87,9 +103,10 @@ public class FoodActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void OnClick(View view, int position, boolean isLongClick) {
-                        Intent i = new Intent(FoodActivity.this, FoodDetailActivity.class);
+                        Intent i = new Intent(FoodActivity.this, owner ? menu_item_edit.class : FoodDetailActivity.class);
                         i.putExtra("RestId",Rest_ID);
                         i.putExtra("FoodId", adapter.getRef(position).getKey());
+                        i.putExtra("cat", Cat_ID);
                         try {
                             startActivity(i);
                         }catch(Exception e){

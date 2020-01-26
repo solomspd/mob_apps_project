@@ -15,11 +15,7 @@ public class control_panel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_panel);
 
-        Intent prev_int = getIntent();
-        rest = prev_int.getStringExtra("Restaurant");
-
-        //test
-        rest = "Restaurant";
+        rest = getIntent().getStringExtra("rest");
 
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
@@ -27,6 +23,7 @@ public class control_panel extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(control_panel.this, MenuActivity.class);
                 intent.putExtra("Restaurant", rest);
+                intent.putExtra("owner", true);
                 startActivity(intent);
             }
         });

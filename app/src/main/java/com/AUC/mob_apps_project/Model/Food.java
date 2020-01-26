@@ -2,7 +2,7 @@ package com.AUC.mob_apps_project.Model;
 
 public class Food {
 
-    public String name, image,description,price,discount,menuId;
+    public String name, image, description,price,discount,menuId;
     public Food(){
 
     }

@@ -2,6 +2,7 @@ package com.AUC.mob_apps_project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,26 +11,40 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.AUC.mob_apps_project.Model.Request;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
-public class payment_history extends AppCompatActivity {
+public class payment_history extends AppCompatActivity implements add_payment.add_pay_inter{
 
     RecyclerView list;
-    ArrayList<pay_item> list_data;
+    ArrayList<Request> list_data;
     pay_adapter adapter;
+    String rest;
+    ArrayList<String> id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_history);
 
-        list_data = new ArrayList<>();
+        rest = getIntent().getExtras().getString("rest");
 
-        list_data.add(new pay_item(10, 100, "jow", "10"));
-        list_data.add(new pay_item(10, 100, "joe", "10"));
-        list_data.add(new pay_item(10, 100, "joe", "10"));
+        id = new ArrayList<>();
+
+        list_data = get_list();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -44,27 +59,81 @@ public class payment_history extends AppCompatActivity {
 
         list.setAdapter(adapter);
 
+        findViewById(R.id.add_pay).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment input = new add_payment();
+                input.show(getSupportFragmentManager(), "Add a new item");
+            }
+        });
+
     }
-}
 
-class pay_item {
-    int time;
-    double ammount;
-    String name, table;
+    private ArrayList<Request> get_list() {
+        final ArrayList<Request> ret = new ArrayList<>();
+        id.clear();
+        FirebaseDatabase.getInstance().getReference("/Requests").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
 
-    pay_item(int time, double ammount, String name, String table) {
-        this.time = time;
-        this.ammount = ammount;
-        this.name = name;
-        this.table = table;
+                while (iterator.hasNext()) {
+                    DataSnapshot next = iterator.next();
+                    Request temp = new Request();
+                    if (rest.equals(next.child("restaurant").getValue())) {
+                        temp.setFullname((String) next.child("fullname").getValue());
+                        temp.setTotal((String) next.child("total").getValue());
+                        temp.setTable((String) next.child("table").getValue());
+                        temp.setTime((long) next.child("time").getValue());
+                        id.add(next.getKey());
+                        ret.add(temp);
+                    }
+                }
+                list_data = ret;
+                try {
+                    adapter.notifyDataSetChanged();
+                } catch (Exception err) {
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(payment_history.this, "Check your connection and try again", Toast.LENGTH_LONG).show();
+            }
+        });
+        return ret;
+    }
+
+    @Override
+    public void onAdd(DialogFragment dialog) {
+        Request ret = new Request();
+        ret.setFullname((((TextView)dialog.getDialog().findViewById(R.id.add_pay_name)).getText().toString()));
+        ret.setTotal((((TextView)dialog.getDialog().findViewById(R.id.add_pay_amm)).getText().toString()));
+        ret.setTable((((TextView)dialog.getDialog().findViewById(R.id.add_pay_table)).getText().toString()));
+        ret.setRestaurant(rest);
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy HH:mm");
+        try {
+            Date time = format.parse(((EditText) dialog.getDialog().findViewById(R.id.add_pay_date)).getText().toString() + " " + ((EditText) dialog.getDialog().findViewById(R.id.add_pay_time)).getText().toString());
+            ret.setTime(time.getSeconds());
+        } catch (Exception err) {
+            System.out.println("error in parsing date");
+        }
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("/Requests");
+        String new_key = ref.push().getKey();
+        ref.child(new_key).setValue(ret);
+        id.add(new_key);
+        list_data.add(ret);
+        adapter.notifyItemChanged(list_data.size()-1);
+//        ref.push().setValue(ret);
     }
 }
 
 class pay_adapter extends RecyclerView.Adapter<pay_adapter.viewholder> {
 
-    private ArrayList<pay_item> data;
+    private ArrayList<Request> data;
 
-    pay_adapter(ArrayList<pay_item> in) {
+    pay_adapter(ArrayList<Request> in) {
         data = in;
     }
 
@@ -76,11 +145,13 @@ class pay_adapter extends RecyclerView.Adapter<pay_adapter.viewholder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        holder.name.setText(data.get(position).name);
-        holder.table.setText(data.get(position).table);
-        holder.amm.setText(String.valueOf(data.get(position).ammount));
-        holder.time.setText(String.valueOf(data.get(position).time));
+    public void onBindViewHolder(@NonNull viewholder holder, final int position) {
+        holder.name.setText(data.get(position).getFullname());
+        holder.table.setText(data.get(position).getTable());
+        holder.amm.setText(String.valueOf(data.get(position).getTotal()));
+        Date time = new Date(data.get(position).getTime());
+        holder.time.setText(time.getHours() + ":" + time.getMinutes());
+        holder.date.setText(time.getDay()+"/"+time.getMonth());
     }
 
     @Override
@@ -89,7 +160,7 @@ class pay_adapter extends RecyclerView.Adapter<pay_adapter.viewholder> {
     }
 
     static class viewholder extends RecyclerView.ViewHolder {
-        TextView time, amm, name, table;
+        TextView time, amm, name, table, date;
 
         viewholder(View view) {
             super(view);
@@ -97,6 +168,7 @@ class pay_adapter extends RecyclerView.Adapter<pay_adapter.viewholder> {
             amm = view.findViewById(R.id.pay_amount);
             name = view.findViewById(R.id.pay_name);
             table = view.findViewById(R.id.pay_table);
+            date = view.findViewById(R.id.pay_date);
         }
     }
 
